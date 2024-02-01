@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}ToDo List{% endblock %}
+
+{% block header %}My ToDo list{% endblock %}
+
+{% block content %}
+  <form method="POST" action="{{ url_for('home') }}" novalidate>
+    {{ form.csrf_token }}
+    <div class="row">
+      <div class="col-md-9">
+        {{ form.content() }}
+        {% for err in form.content.errors %}<span class="error-message">{{ err }}</span>{% endfor %}
+      </div>
+      <div class="col-md-3">
+        <div class="input-group">
+          {{ form.category() }} &nbsp;
+          {{ form.submit }}
+        </div>
+      </div>
+    </div>
+  </form>
+  {% for task in tasks %}
+    <hr>
+    <div class="row">
+      <div class="col-md-9">
+        <a href="{{ url_for('check', task_id=task.id) }}">
+          <button type="button" class="btn btn{% if task.checked == 1 %}-outline{% endif %}-{{ colors[task.category] }}
+           btn-sm"><i class='bx bx-check'></i></button></a> &nbsp;
+           <span{% if task.checked == 1 %} class="checked"{% endif %}>{{ task.content }}</span>
+      </div>
+      <div class="col-md-3 action-buttons">
+        <a href="{{ url_for('update', task_id=task.id) }}"><button type="button" class="btn btn-outline-warning btn-sm">Edit</button></a> &nbsp
+        <a href="{{ url_for('delete', task_id=task.id) }}" onclick="return confirm('Are you sure you want to delete this item?');">
+          <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,41 @@
+/* Define colors*/
+:root {
+    --primary: #392467;
+    --secondary: #5D3587;
+    --accent: #A367B1;
+    --text: #FFD1E3;
+}
+
+body {
+    background-color: var(--primary);
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    text-align: left;
+    line-height: 2;
+    font-size: 1em;
+    margin: 0;
+}
+h1, h2, h3, h4 {
+    color: var(--text);
+}
+.container {
+    padding: 1% 2%;
+}
+i {
+    color: var(--text);
+    font-size: 1em;
+}
+#header, #footer {
+    background-color: var(--secondary);
+    text-align: center;
+}
+.error-message {
+    color: red;
+}
+.action-buttons {
+    text-align: right;
+}
+.checked {
+    text-decoration: line-through
+}
